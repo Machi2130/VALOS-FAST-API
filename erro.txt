@@ -1,0 +1,1386 @@
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    |     async with AsyncExitStack() as async_exit_stack:
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    |     raise exc_details[1]
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    |     await self.gen.athrow(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    |     async with async_session_maker() as session:
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close       
+    |     await greenlet_spawn(self.sync_session.close)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn
+    |     result = context.switch(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    |     self._close_impl(invalidate=False)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    |     transaction.close(invalidate)
+    |   File "<string>", line 2, in close
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    |     raise sa_exc.IllegalStateChangeError(
+    | sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi    
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    raise app_exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    async with AsyncExitStack() as async_exit_stack:
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    cb_suppress = await cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    async with async_session_maker() as session:
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close
+    await greenlet_spawn(self.sync_session.close)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn  
+    result = context.switch(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    self._close_impl(invalidate=False)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    transaction.close(invalidate)
+  File "<string>", line 2, in close
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    raise sa_exc.IllegalStateChangeError(
+sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)     
+INFO:     127.0.0.1:57015 - "GET /api/leads/?skip=0&limit=100 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__    
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__        
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__        
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response   
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__     
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    |     async with AsyncExitStack() as async_exit_stack:
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    |     raise exc_details[1]
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    |     await self.gen.athrow(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    |     async with async_session_maker() as session:
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close       
+    |     await greenlet_spawn(self.sync_session.close)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn
+    |     result = context.switch(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    |     self._close_impl(invalidate=False)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    |     transaction.close(invalidate)
+    |   File "<string>", line 2, in close
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    |     raise sa_exc.IllegalStateChangeError(
+    | sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi    
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    raise app_exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    async with AsyncExitStack() as async_exit_stack:
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    cb_suppress = await cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    async with async_session_maker() as session:
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close
+    await greenlet_spawn(self.sync_session.close)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn  
+    result = context.switch(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    self._close_impl(invalidate=False)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    transaction.close(invalidate)
+  File "<string>", line 2, in close
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    raise sa_exc.IllegalStateChangeError(
+sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)     
+INFO:     127.0.0.1:49254 - "GET /api/leads/?skip=0&limit=50&status=&location=&search= HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__    
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__        
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__        
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response   
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__     
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    |     async with AsyncExitStack() as async_exit_stack:
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    |     raise exc_details[1]
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    |     await self.gen.athrow(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    |     async with async_session_maker() as session:
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close       
+    |     await greenlet_spawn(self.sync_session.close)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn
+    |     result = context.switch(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    |     self._close_impl(invalidate=False)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    |     transaction.close(invalidate)
+    |   File "<string>", line 2, in close
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    |     raise sa_exc.IllegalStateChangeError(
+    | sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi    
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    raise app_exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    async with AsyncExitStack() as async_exit_stack:
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    cb_suppress = await cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    async with async_session_maker() as session:
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close
+    await greenlet_spawn(self.sync_session.close)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn  
+    result = context.switch(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    self._close_impl(invalidate=False)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    transaction.close(invalidate)
+  File "<string>", line 2, in close
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    raise sa_exc.IllegalStateChangeError(
+sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)     
+2025-12-29 17:04:38,408 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-29 17:04:38,408 INFO sqlalchemy.engine.Engine SELECT count(sales_lead.id) AS count_1 
+FROM sales_lead
+2025-12-29 17:04:38,409 INFO sqlalchemy.engine.Engine [cached since 70.09s ago] ()
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001997FDC94E0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001997FDC94E0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38D4E0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38D4E0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38EC50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38EC50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38ED40>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38ED40>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4D8220>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4D8220>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4D9210>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4D9210>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4DBA60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4DBA60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F514130>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F514130>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4DBB50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F4DBB50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F5157B0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py:221: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F5157B0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+  async with AsyncExitStack() as async_exit_stack:
+INFO:     127.0.0.1:54776 - "GET /api/leads/?skip=0&limit=50&status=&location=&search= HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 85, in collapse_excgroups
+  |     yield
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__    
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__        
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__        
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    |     raise app_exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response   
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__     
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app     
+    |     raise exc
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app     
+    |     await app(scope, receive, sender)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    |     response = await func(request)
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    |     async with AsyncExitStack() as async_exit_stack:
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    |     raise exc_details[1]
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    |     await self.gen.athrow(typ, value, traceback)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    |     async with async_session_maker() as session:
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close       
+    |     await greenlet_spawn(self.sync_session.close)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn
+    |     result = context.switch(*args, **kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    |     self._close_impl(invalidate=False)
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    |     transaction.close(invalidate)
+    |   File "<string>", line 2, in close
+    |   File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    |     raise sa_exc.IllegalStateChangeError(
+    | sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 419, in run_asgi    
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_utils.py", line 91, in collapse_excgroups
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\main.py", line 228, in log_request_timing
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 165, in call_next
+    raise app_exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 91, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\cors.py", line 146, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 762, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 782, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 297, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 77, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 64, in wrapped_app
+    raise exc
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\starlette\routing.py", line 72, in app
+    response = await func(request)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\fastapi\routing.py", line 221, in app
+    async with AsyncExitStack() as async_exit_stack:
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 745, in __aexit__
+    raise exc_details[1]
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 728, in __aexit__
+    cb_suppress = await cb(*exc_details)
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api\app\database.py", line 61, in get_db
+    async with async_session_maker() as session:
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1027, in close
+    await greenlet_spawn(self.sync_session.close)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 189, in greenlet_spawn  
+    result = context.switch(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2468, in close
+    self._close_impl(invalidate=False)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2537, in _close_impl
+    transaction.close(invalidate)
+  File "<string>", line 2, in close
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 121, in _go
+    raise sa_exc.IllegalStateChangeError(
+sqlalchemy.exc.IllegalStateChangeError: Method 'close()' can't be called here; method '_connection_for_bind()' is already in progress and this would cause an unexpected state change to <SessionTransactionState.CLOSED: 5> (Background on this error at: https://sqlalche.me/e/20/isce)     
+2025-12-29 17:04:38,604 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-29 17:04:38,605 INFO sqlalchemy.engine.Engine SELECT count(sales_lead.id) AS count_1 
+FROM sales_lead
+2025-12-29 17:04:38,605 INFO sqlalchemy.engine.Engine [cached since 70.29s ago] ()
+2025-12-29 17:04:39,002 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-29 17:04:39,003 INFO sqlalchemy.engine.Engine SELECT count(sales_lead.id) AS count_1 
+FROM sales_lead
+2025-12-29 17:04:39,003 INFO sqlalchemy.engine.Engine [cached since 70.69s ago] ()
+⏱️  [919.12ms] SELECT count(sales_lead.id) AS count_1  FROM sales_lead
+⏱️  [1061.21ms] SELECT count(sales_lead.id) AS count_1  FROM sales_lead
+⏱️  [1278.05ms] SELECT count(sales_lead.id) AS count_1  FROM sales_lead
+2025-12-29 17:04:40,281 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-29 17:04:40,282 INFO sqlalchemy.engine.Engine SELECT count(sales_lead.id) AS count_1
+FROM sales_lead
+2025-12-29 17:04:40,282 INFO sqlalchemy.engine.Engine [cached since 71.97s ago] ()
+⏱️  [1184.56ms] SELECT count(sales_lead.id) AS count_1  FROM sales_lead
+2025-12-29 17:04:42,003 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-12-29 17:04:42,004 INFO sqlalchemy.engine.Engine SELECT count(sales_lead.id) AS count_1 
+FROM sales_lead
+2025-12-29 17:04:42,005 INFO sqlalchemy.engine.Engine [cached since 73.69s ago] ()
+⏱️  [1232.10ms] SELECT count(sales_lead.id) AS count_1  FROM sales_lead
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+👋 Shutting down FastAPI application...
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4688]
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001997FCDE6B0>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001997FCDE6B0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001997FCDE6B0>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38E980>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38E980>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F38E980>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F517B50>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F517B50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F517B50>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560400>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560400>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560400>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560310>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560310>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F560310>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515C60>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515C60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515C60>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515990>>
+Traceback (most recent call last):
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\pool\base.py", line 377, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 1109, in do_terminate
+    dbapi_connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 902, in terminate  
+    self._connection.terminate()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1478, in terminate
+    self._abort()
+  File "C:\Users\Shravani\Downloads\VALOS-FAST-API\.venv\Lib\site-packages\asyncpg\connection.py", line 1505, in _abort
+    self._protocol.abort()
+  File "asyncpg\protocol\protocol.pyx", line 607, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 250, in abort
+    self._force_close(None)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 255, in _force_close
+    self._ssl_protocol._abort(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\sslproto.py", line 671, in _abort
+    self._transport._force_close(exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "C:\Users\Shravani\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+sys:1: SAWarning: The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x000001990F515990>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+INFO:     Stopping reloader process [35480]
+(.venv) PS C:\Users\Shravani\Downloads\VALOS-FAST-API\sales-costing-api> 
+
+
+
+✅ Login successful, token saved
+:3000/:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=1' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/leads/?skip=0&limit=1:1  Failed to load resource: net::ERR_FAILED
+:3000/:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/costings/?skip=0&limit=1' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/costings/?skip=0&limit=1:1  Failed to load resource: net::ERR_FAILED
+:3000/:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/costings/?skip=0&limit=1' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/costings/?skip=0&limit=1:1  Failed to load resource: net::ERR_FAILED
+:3000/:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=1' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/leads/?skip=0&limit=1:1  Failed to load resource: net::ERR_FAILED
+costings:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/costings/?skip=0&limit=50&project_code=&status=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/costings/?skip=0&limit=50&project_code=&status=&search=:1  Failed to load resource: net::ERR_FAILED
+costings:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/costings/?skip=0&limit=50&project_code=&status=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+127.0.0.1:8000/api/costings/?skip=0&limit=50&project_code=&status=&search=:1  Failed to load resource: net::ERR_FAILED
+2LeadTracker.js:43 📄 Loading leads...
+leads:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=100' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+LeadTracker.js:60 ❌ Failed to load leads: Network Error
+loadLeads @ LeadTracker.js:60
+127.0.0.1:8000/api/leads/?skip=0&limit=100:1  Failed to load resource: net::ERR_FAILED
+leads:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=100' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+LeadTracker.js:60 ❌ Failed to load leads: Network Error
+loadLeads @ LeadTracker.js:60
+127.0.0.1:8000/api/leads/?skip=0&limit=100:1  Failed to load resource: net::ERR_FAILED
+sales-database:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+api.js:74  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search= net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+getSalesLeads @ api.js:74
+queryFn @ SalesDatabase.js:40
+fetchFn @ query.ts:474
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:546
+#executeFetch @ queryObserver.ts:343
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:99
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+sales-database:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+api.js:74  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search= net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+getSalesLeads @ api.js:74
+queryFn @ SalesDatabase.js:40
+fetchFn @ query.ts:474
+run @ retryer.ts:155
+(anonymous) @ retryer.ts:201
+Promise.then
+(anonymous) @ retryer.ts:196
+Promise.catch
+run @ retryer.ts:160
+start @ retryer.ts:221
+fetch @ query.ts:546
+#executeFetch @ queryObserver.ts:343
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:99
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+LeadTracker.js:43 📄 Loading leads...
+LeadTracker.js:43 📄 Loading leads...
+leads:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=100' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+LeadTracker.js:60 ❌ Failed to load leads: Network Error
+loadLeads @ LeadTracker.js:60
+await in loadLeads
+(anonymous) @ LeadTracker.js:37
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+LeadTracker.js:44  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=100 net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+loadLeads @ LeadTracker.js:44
+(anonymous) @ LeadTracker.js:37
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+leads:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=100' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+LeadTracker.js:60 ❌ Failed to load leads: Network Error
+loadLeads @ LeadTracker.js:60
+await in loadLeads
+(anonymous) @ LeadTracker.js:37
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+reconnectPassiveEffects @ react-dom-client.development.js:15832
+doubleInvokeEffectsOnFiber @ react-dom-client.development.js:18700
+runWithFiberInDEV @ react-dom-client.development.js:870
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+commitDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18712
+flushPassiveEffects @ react-dom-client.development.js:18439
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+LeadTracker.js:44  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=100 net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+loadLeads @ LeadTracker.js:44
+(anonymous) @ LeadTracker.js:37
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+reconnectPassiveEffects @ react-dom-client.development.js:15832
+doubleInvokeEffectsOnFiber @ react-dom-client.development.js:18700
+runWithFiberInDEV @ react-dom-client.development.js:870
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18664
+commitDoubleInvokeEffectsInDEV @ react-dom-client.development.js:18712
+flushPassiveEffects @ react-dom-client.development.js:18439
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+sales-database:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+api.js:74  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search= net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+getSalesLeads @ api.js:74
+queryFn @ SalesDatabase.js:40
+fetchFn @ query.ts:474
+run @ retryer.ts:155
+start @ retryer.ts:221
+fetch @ query.ts:546
+#executeFetch @ queryObserver.ts:343
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:99
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45
+sales-database:1 Access to XMLHttpRequest at 'http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search=' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+api.js:74  GET http://127.0.0.1:8000/api/leads/?skip=0&limit=50&status=&location=&search= net::ERR_FAILED 500 (Internal Server Error)
+dispatchXhrRequest @ xhr.js:198
+xhr @ xhr.js:15
+dispatchRequest @ dispatchRequest.js:51
+Promise.then
+_request @ Axios.js:163
+request @ Axios.js:40
+Axios.<computed> @ Axios.js:211
+wrap @ bind.js:12
+getSalesLeads @ api.js:74
+queryFn @ SalesDatabase.js:40
+fetchFn @ query.ts:474
+run @ retryer.ts:155
+(anonymous) @ retryer.ts:201
+Promise.then
+(anonymous) @ retryer.ts:196
+Promise.catch
+run @ retryer.ts:160
+start @ retryer.ts:221
+fetch @ query.ts:546
+#executeFetch @ queryObserver.ts:343
+onSubscribe @ queryObserver.ts:101
+subscribe @ subscribable.ts:11
+(anonymous) @ useBaseQuery.ts:99
+subscribeToStore @ react-dom-client.development.js:8244
+react_stack_bottom_frame @ react-dom-client.development.js:25989
+runWithFiberInDEV @ react-dom-client.development.js:870
+commitHookEffectListMount @ react-dom-client.development.js:13244
+commitHookPassiveMountEffects @ react-dom-client.development.js:13334
+commitPassiveMountOnFiber @ react-dom-client.development.js:15483
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15476
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15718
+recursivelyTraversePassiveMountEffects @ react-dom-client.development.js:15439
+commitPassiveMountOnFiber @ react-dom-client.development.js:15519
+flushPassiveEffects @ react-dom-client.development.js:18432
+(anonymous) @ react-dom-client.development.js:17923
+performWorkUntilDeadline @ scheduler.development.js:45

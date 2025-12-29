@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales & Costing Management</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }
+        header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .nav { background: #34495e; padding: 10px 20px; }
+        .nav button { background: #3498db; color: white; border: none; padding: 8px 16px; margin: 0 5px; border-radius: 5px; cursor: pointer; }
+        .nav button.active { background: #e74c3c; }
+        .content { padding: 20px; display: none; }
+        .content.active { display: block; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #229954; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+        .btn-sm { padding: 5px 10px; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #ecf0f1; font-weight: bold; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .status.success { background: #d5f4e6; color: #27ae60; border: 1px solid #abebc6; }
+        .status.error { background: #fadbd8; color: #e74c3c; border: 1px solid #f5b7b1; }
+        .status.info { background: #d6eaf8; color: #3498db; border: 1px solid #85c1e9; }
+        .token { background: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; word-break: break-all; margin: 10px 0; }
+        .section { margin-bottom: 30px; padding: 20px; border: 1px solid #eee; border-radius: 5px; }
+        h2 { color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sales & Costing Management</h1>
+            <p>FastAPI Backend: <span id="api-status">Disconnected</span></p>
+        </header>
+
+        <div class="nav">
+            <button class="active" onclick="showSection('login')">Login</button>
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('leads')">Leads</button>
+            <button onclick="showSection('costing')">Costing</button>
+            <button onclick="showSection('packaging')">Packaging</button>
+            <button onclick="showSection('quotations')">Quotations</button>
+            <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="login" class="content active">
+            <div class="section">
+                <h2>🔐 Authentication</h2>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" value="admin">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" value="pratham@123">
+                </div>
+                <button onclick="login()">Login</button>
+                <button onclick="registerUser()" class="danger">Register New User</button>
+                <div id="login-status"></div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard" class="content">
+            <div class="grid">
+                <div class="section">
+                    <h2>👤 Profile</h2>
+                    <button onclick="getProfile()">Get Profile</button>
+                    <div id="profile-data"></div>
+                </div>
+                <div class="section">
+                    <h2>📊 Quick Stats</h2>
+                    <button onclick="getStats()">Refresh Stats</button>
+                    <div id="stats-data"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEADS -->
+        <div id="leads" class="content">
+            <div class="section">
+                <h2>📈 Sales Leads</h2>
+                <button onclick="loadLeads()">Refresh List</button>
+                <button onclick="createLead()">+ New Lead</button>
+                <div id="leads-list"></div>
+            </div>
+            <div class="section">
+                <h2>+ Add New Lead</h2>
+                <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" id="lead-company" placeholder="Test Corp">
+                </div>
+                <div class="form-group">
+                    <label>Owner</label>
+                    <input type="text" id="lead-owner" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="lead-email" placeholder="john@test.com">
+                </div>
+                <button onclick="saveLead()">Save Lead</button>
+            </div>
+        </div>
+
+        <!-- COSTING -->
+        <div id="costing" class="content">
+            <div class="grid">
+                <div class="section">
+                    <h2>💰 Costings</h2>
+                    <button onclick="loadCostings()">Refresh List</button>
+                    <div id="costings-list"></div>
+                </div>
+                <div class="section">
+                    <h2>📦 Packaging Options</h2>
+                    <button onclick="loadPackaging()">Refresh List</button>
+                    <div id="packaging-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUOTATIONS -->
+        <div id="quotations" class="content">
+            <div class="section">
+                <h2>📋 Quotations</h2>
+                <button onclick="loadQuotations()">Refresh List</button>
+                <div id="quotations-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+        let token = localStorage.getItem('token') || null;
+        let currentUser = null;
+
+        function showSection(section) {
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav button').forEach(el => el.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (section !== 'login' && !token) {
+                alert('Please login first');
+                showSection('login');
+            }
+        }
+
+        function showStatus(elId, message, type = 'info') {
+            const el = document.getElementById(elId);
+            el.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        async function apiRequest(endpoint, options = {}) {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                },
+                ...options
+            };
+
+            if (token) config.headers.Authorization = `Bearer ${token}`;
+
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, config);
+                const data = await response.json();
+                
+                if (!response.ok) throw new Error(data.detail || data.error || 'API Error');
+                return data;
+            } catch (error) {
+                throw new Error(error.message);
+            }
+        }
+
+        // AUTH
+        async function registerUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                await apiRequest('/api/auth/register/', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username, email: `${username}@example.com`,
+                        password, full_name: 'User'
+                    })
+                });
+                showStatus('login-status', '✅ User registered! Now login.', 'success');
+            } catch (error) {
+                showStatus('login-status', `❌ ${error.message}`, 'error');
+            }
+        }
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const formData = new URLSearchParams();
+                formData.append('username', username);
+                formData.append('password', password);
+
+                const data = await apiRequest('/api/auth/login/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+
+                token = data.access_token;
+                localStorage.setItem('token', token);
+                document.getElementById('api-status').textContent = 'Connected';
+                document.getElementById('logout-btn').style.display = 'inline-block';
+                currentUser = username;
+                showStatus('login-status', '✅ Login successful!', 'success');
+                showSection('dashboard');
+            } catch (error) {
+                showStatus('login-status', `❌ ${error.message}`, 'error');
+            }
+        }
+
+        function logout() {
+            token = null;
+            localStorage.removeItem('token');
+            currentUser = null;
+            document.getElementById('api-status').textContent = 'Disconnected';
+            document.getElementById('logout-btn').style.display = 'none';
+            showSection('login');
+        }
+
+        // PROFILE
+        async function getProfile() {
+            try {
+                const data = await apiRequest('/api/auth/me/');
+                document.getElementById('profile-data').innerHTML = `
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('profile-data').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        // LEADS
+        async function loadLeads() {
+            try {
+                const response = await apiRequest('/api/leads/');
+                const data = response.items || response; // Handle both paginated and direct array responses
+                let html = '<table><tr><th>ID</th><th>Company</th><th>Owner</th><th>Email</th><th>Status</th><th>Actions</th></tr>';
+                data.forEach(lead => {
+                    html += `<tr>
+                        <td>${lead.id}</td>
+                        <td>${lead.company_name}</td>
+                        <td>${lead.owner}</td>
+                        <td>${lead.email}</td>
+                        <td>${lead.status}</td>
+                        <td><button class="btn-sm danger" onclick="deleteLead(${lead.id})">Delete</button></td>
+                    </tr>`;
+                });
+                html += '</table>';
+                document.getElementById('leads-list').innerHTML = html;
+            } catch (error) {
+                document.getElementById('leads-list').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        async function createLead() {
+            try {
+                const data = await apiRequest('/api/leads/', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        company_name: 'Test Company',
+                        owner: 'Test Owner',
+                        email: `test${Date.now()}@example.com`,
+                        status: 'new'
+                    })
+                });
+                loadLeads();
+                showStatus('leads-list', '✅ Lead created!', 'success');
+            } catch (error) {
+                showStatus('leads-list', `❌ ${error.message}`, 'error');
+            }
+        }
+
+        async function saveLead() {
+            const company = document.getElementById('lead-company').value;
+            const owner = document.getElementById('lead-owner').value;
+            const email = document.getElementById('lead-email').value;
+            
+            try {
+                await apiRequest('/api/leads/', {
+                    method: 'POST',
+                    body: JSON.stringify({ company_name: company, owner, email, status: 'new' })
+                });
+                loadLeads();
+                document.getElementById('lead-company').value = '';
+                document.getElementById('lead-owner').value = '';
+                document.getElementById('lead-email').value = '';
+            } catch (error) {
+                alert(`❌ ${error.message}`);
+            }
+        }
+
+        async function deleteLead(id) {
+            if (confirm('Delete this lead?')) {
+                try {
+                    await apiRequest(`/api/leads/${id}/`, { method: 'DELETE' });
+                    loadLeads();
+                } catch (error) {
+                    alert(`❌ ${error.message}`);
+                }
+            }
+        }
+
+        // COSTING
+        async function loadCostings() {
+            try {
+                const data = await apiRequest('/api/costings/');
+                document.getElementById('costings-list').innerHTML = `
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('costings-list').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        async function loadPackaging() {
+            try {
+                const data = await apiRequest('/api/packaging/');
+                document.getElementById('packaging-list').innerHTML = `
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('packaging-list').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        async function loadQuotations() {
+            try {
+                const data = await apiRequest('/api/quotations/');
+                document.getElementById('quotations-list').innerHTML = `
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('quotations-list').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        // STATS
+        async function getStats() {
+            try {
+                const [leads, costings, quotes] = await Promise.all([
+                    apiRequest('/api/leads/').catch(() => ({ count: 0 })),
+                    apiRequest('/api/costings/').catch(() => ({ count: 0 })),
+                    apiRequest('/api/quotations/').catch(() => ({ count: 0 }))
+                ]);
+                document.getElementById('stats-data').innerHTML = `
+                    <div>Leads: ${leads.length || 0}</div>
+                    <div>Costings: ${costings.length || 0}</div>
+                    <div>Quotations: ${quotes.length || 0}</div>
+                `;
+            } catch (error) {
+                document.getElementById('stats-data').innerHTML = `<div class="status error">❌ ${error.message}</div>`;
+            }
+        }
+
+        // INIT
+        if (token) {
+            document.getElementById('api-status').textContent = 'Connected';
+            document.getElementById('logout-btn').style.display = 'inline-block';
+            showSection('dashboard');
+        }
+    </script>
+</body>
+</html>

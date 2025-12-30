@@ -272,15 +272,15 @@ async def health_check():
 # ─────────────────────────────────────────────
 # Global Exception Handler
 # ─────────────────────────────────────────────
-@app.exception_handler(Exception)
-async def global_exception_handler(request, exc):
-    return JSONResponse(
-        status_code=500,
-        content={
-            "detail": "Internal server error",
-            "error": str(exc) if settings.debug else "Something went wrong",
-        },
-    )
+# @app.exception_handler(Exception)
+# async def global_exception_handler(request, exc):
+#     return JSONResponse(
+#         status_code=500,
+#         content={
+#             "detail": "Internal server error",
+#             "error": str(exc) if settings.debug else "Something went wrong",
+#         },
+#     )
 
 # ─────────────────────────────────────────────
 # Local run support

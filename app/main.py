@@ -208,6 +208,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 2️⃣ OPTIONS HANDLER (THIS WAS MISSING)
+@app.options("/{path:path}")
+async def options_handler(path: str):
+    return {}
+
 # ─────────────────────────────────────────────
 # Trusted Hosts (ONLY in production)
 # ─────────────────────────────────────────────

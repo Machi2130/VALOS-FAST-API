@@ -187,41 +187,65 @@ app = FastAPI(
 )
 
 # ─────────────────────────────────────────────
-# ✅ CORS — SINGLE, CORRECT CONFIG
+# ✅ CORS — ADD THIS FIRST, BEFORE OTHER MIDDLEWARE
 # ─────────────────────────────────────────────
 allowed_origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
-    "friendly-douhua-0f34ab.netlify.app",
+    "https://friendly-douhua-0f34ab.netlify.app"
 ]
 
 # Optional prod frontend (Netlify / custom)
 if os.getenv("FRONTEND_URL"):
     allowed_origins.append(os.getenv("FRONTEND_URL"))
 
+print(f"🔐 CORS allowed origins: {allowed_origins}")
+
+# ⚠️ CRITICAL: Add CORS middleware FIRST
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],  # Added this
 )
 
-# 2️⃣ OPTIONS HANDLER (THIS WAS MISSING)
-@app.options("/{path:path}")
-async def options_handler(path: str):
-    return {}
+# ─────────────────────────────────────────────
+# Explicit OPTIONS handler for preflight requests
+# ─────────────────────────────────────────────
+@app.options("/{rest_of_path:path}")
+async def preflight_handler(request: Request, rest_of_path: str):
+    """Handle CORS preflight requests explicitly"""
+    origin = request.headers.get("origin", "")
+    
+    # Check if origin is allowed
+    if origin in allowed_origins or "*" in allowed_origins:
+        return JSONResponse(
+            content={},
+            headers={
+                "Access-Control-Allow-Origin": origin,
+                "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Credentials": "true",
+                "Access-Control-Max-Age": "600",
+            }
+        )
+    return JSONResponse(content={}, status_code=403)
 
 # ─────────────────────────────────────────────
-# Trusted Hosts (ONLY in production)
+# Trusted Hosts (ONLY in production) - AFTER CORS
 # ─────────────────────────────────────────────
 if not settings.debug:
+    print("🔒 Adding TrustedHostMiddleware for production")
     app.add_middleware(
         TrustedHostMiddleware,
         allowed_hosts=[
+            "valos-fast-api.onrender.com",  # Your specific domain
             "*.onrender.com",
-            "*.netlify.app",
+            "localhost",
+            "127.0.0.1",
         ],
     )
 
@@ -275,17 +299,41 @@ async def health_check():
     return {"status": "healthy"}
 
 # ─────────────────────────────────────────────
+# Debug endpoint to check CORS configuration
+# ─────────────────────────────────────────────
+@app.get("/debug-info")
+async def debug_info():
+    return {
+        "debug": settings.debug,
+        "allowed_origins": allowed_origins,
+        "env_frontend_url": os.getenv("FRONTEND_URL"),
+        "environment": "development" if settings.debug else "production",
+    }
+
+# ─────────────────────────────────────────────
+# Test CORS endpoint
+# ─────────────────────────────────────────────
+@app.get("/test-cors")
+async def test_cors(request: Request):
+    return {
+        "message": "CORS test successful",
+        "origin": request.headers.get("origin", "No origin header"),
+        "cors_configured": True,
+    }
+
+# ─────────────────────────────────────────────
 # Global Exception Handler
 # ─────────────────────────────────────────────
-# @app.exception_handler(Exception)
-# async def global_exception_handler(request, exc):
-#     return JSONResponse(
-#         status_code=500,
-#         content={
-#             "detail": "Internal server error",
-#             "error": str(exc) if settings.debug else "Something went wrong",
-#         },
-#     )
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    print(f"❌ Global exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": "Internal server error",
+            "error": str(exc) if settings.debug else "Something went wrong",
+        },
+    )
 
 # ─────────────────────────────────────────────
 # Local run support

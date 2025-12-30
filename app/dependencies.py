@@ -19,7 +19,7 @@ settings = get_settings()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # OAuth2 scheme - FIXED tokenUrl
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login/")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login/")
 
 def get_password_hash(password: str) -> str:
     """Hash password - CORRECT implementation"""
